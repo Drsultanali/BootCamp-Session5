@@ -7,8 +7,7 @@ name: session_5
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,20 +21,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Seetup Node.js environment
+      - name: Setup Node.js environment
         uses: actions/setup-node@v2-beta
         with:
            version: 12
 
       - name: GitHub action for Yarn
         uses: Borales/actions-yarn@v2.1.0
-        with: #Yarn command
-          camd: install #npm install #yarn install
-          
+        with:
+         #Yarn command
+         cmand: install #npm install # yarn install
+         
       - name: Creating Build
-        run: yarn build
+        run: yarn build 
       - name: Installing Surge
         run: npm install -g surge
+        
       - name: Deploying on surge
         run: surge./build http://bootcampseesion5.surge.sh/
 
